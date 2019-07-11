@@ -16,7 +16,7 @@ class Publisher extends rabbitmq
 
 
 $publisher = new Publisher();
-for($i=0;$i<100000;$i++){
+for($i=0;$i<2;$i++){
     $publisher->sendMessage('Hello,World!');
 }
 

@@ -106,6 +106,7 @@ abstract class rabbitmq
         $this->channel->basic_consume($this->queueName, '', false, $this->autoAck, false, false, function($msg){$this->get($msg);});
         //监听消息
         while(count($this->channel->callbacks)){
+
             $this->channel->wait();
         }
     }

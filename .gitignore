@@ -1,3 +1,4 @@
 .idea*
 .user.*
 vendor
+node_modules

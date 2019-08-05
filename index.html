@@ -1,19 +1,16 @@
-<script src="vue.min.js"></script>
-
-<div id="components-demo">
-    <button-counter></button-counter>
-</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
+    const axios = require('axios');
+    // Optionally the request above could also be done as
+    // Send a POST request
+    axios({
+        method: 'post',
+        url: '/user/12345',
+        data: {
+            firstName: 'Fred',
+            lastName: 'Flintstone'
+        }
+    });
 
-    // 定义一个名为 button-counter 的新组件
-    Vue.component('button-counter', {
-        data: function () {
-            return {
-                count: 0
-            }
-        },
-        template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
-    })
 
-    new Vue({ el: '#components-demo' })
 </script>

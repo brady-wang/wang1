@@ -4,7 +4,7 @@ class Publisher extends rabbitmq
 {
     public function __construct()
     {
-        parent::__construct('crm', 'crm_test', 'crm_test');
+        parent::__construct('crm1', 'crm_test1', '','fanout');
     }
     public function doProcess($msg)
     {
@@ -16,7 +16,7 @@ class Publisher extends rabbitmq
 
 
 $publisher = new Publisher();
-for($i=0;$i<2;$i++){
+for($i=0;$i<10;$i++){
     $publisher->sendMessage('Hello,World!');
 }
 

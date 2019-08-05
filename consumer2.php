@@ -4,7 +4,7 @@ class Consumer extends rabbitmq
 {
     public function __construct()
     {
-        parent::__construct('crm1', 'crm_test', '','fanout');
+        parent::__construct('crm1', 'crm_test2', '','fanout');
     }
     public function doProcess($msg)
     {

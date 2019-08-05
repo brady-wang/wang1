@@ -32,7 +32,7 @@ abstract class rabbitmq
         $this->exchangeName = empty($exchangeName) ? '' : $exchangeName;
         $this->queueName = empty($queueName) ? '' : $queueName;
         $this->routeKey = empty($routeKey) ? '' : $routeKey;
-        $this->exchangeType = empty($exchangeType) ? '' : 'direct';
+        $this->exchangeType = !empty($exchangeType) ? $exchangeType : 'direct';
         if(!empty($config))
         {
             $this->setConfig($config);

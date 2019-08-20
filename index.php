@@ -8,31 +8,31 @@
 </div>
 
 <script>
-//    Vue.component('button-counter', {
-//        template: '<button v-on:click="increment">{{ counter }}</button>',
-//        data: function () {
-//            return {
-//                counter: 0
-//            }
-//        },
-//        methods: {
-//            increment: function () {
-//                this.counter += 1
-//                this.$emit('btn', this.counter);// 父组件自定义了btn时间
-//            }
-//        },
-//    })
-//    new Vue({ //父组件
-//        el: '#counter-event-example',
-//        data: {
-//            total: '点击下面的按钮'
-//        },
-//        methods: {
-//            test: function (b) {
-//                this.total  = b;
-//            }
-//        }
-//    })
+    Vue.component('button-counter', {
+        template: '<button v-on:click="increment">{{ counter }}</button>',
+        data: function () {
+            return {
+                counter: 0
+            }
+        },
+        methods: {
+            increment: function () {
+                this.counter += 1
+                this.$emit('btn', this.counter);// 父组件自定义了btn时间
+            }
+        },
+    })
+    new Vue({ //父组件
+        el: '#counter-event-example',
+        data: {
+            total: '点击下面的按钮'
+        },
+        methods: {
+            test: function (b) {
+                this.total  = b;
+            }
+        }
+    })
 
 
 

@@ -5,22 +5,22 @@ require_once "./vendor/autoload.php";
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-
-$conf = [
-    'host' => '192.168.33.50',
-    'port' => 5672,
-    'user' => 'wang',
-    'pwd' => 'wang',
-    'vhost' => '/queue_crm',
-];
-
+//
 //$conf = [
-//    'host' => '192.168.11.101',
+//    'host' => '192.168.33.50',
 //    'port' => 5672,
-//    'user' => 'dgmq-sz-crm',
-//    'pwd' => '123456',
+//    'user' => 'wang',
+//    'pwd' => 'wang',
 //    'vhost' => '/queue_crm',
 //];
+
+$conf = [
+    'host' => '192.168.11.101',
+    'port' => 5672,
+    'user' => 'dgmq-sz-crm',
+    'pwd' => '123456',
+    'vhost' => '/queue_crm_zlq',
+];
 
 $exchangeName = 'queue_crm_staff_test_brady'; //交换机名
 $queueName = 'queue_crm_staff_test_brady'; //队列名称
@@ -39,31 +39,33 @@ $channel->queue_bind($queueName, $exchangeName, $routingKey); //将队列与某�
 
 $array = [1,2,3,4];
 
-
-for($i=1;$i<1000;$i++){
+$max = 3000;
+for($i=1;$i<= $max;$i++){
+    $rand = rand(1,$max);
     $msgBody1 = '{
                     "model": "organization",
                     "type": ' . $array[array_rand($array)] . ',
                 "data": {
-                "id": ' . $i . ',
-                        "name": "技术中心'.$i.'",
-                        "pid": "'.$i.'",
-                        "area_code": ' . random_int(1000, 9999) . '
+                "id": ' . $rand . ',
+                        "name": "技术中心'.$rand.'",
+                        "pid": "'.$rand.'",
+                        "area_code": null
                 }
                 }';
+
     $msgBody = '{
                 "model": "job",
                 "type": "'.$array[array_rand($array)].'",
                 "data":
                     {
-                        "id": "'.$i.'",
-                        "name": "天河区店导'.$i.'",
+                        "id": "'.$rand.'",
+                        "name": "天河区店导'.$rand.'",
                         "is_guide": "1",
                         "is_part": "0",
                         "guide_code": "CountyGuide",
                         "organization_id": "82",
                         "pid": "110",
-                        "area_code": "'.random_int(1000, 9999).'"
+                        "area_code": null
                     }
             }';
     $msg = new AMQPMessage($msgBody, ['content_type' => 'text/plain', 'delivery_mode' => 2]); //生成消息

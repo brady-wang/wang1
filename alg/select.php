@@ -5,12 +5,32 @@
 
 $arr = array_rand(range(1, 100), 10);
 shuffle($arr);
+$arr = [7,6,5,4,3,2,1];
+
 
 function select_sort($arr)
 {
-    $max = count($arr) - 1;
+    $len = count($arr);
+    for ($i = 0; $i < $len - 1; $i++) { //循环len次
+        $min = $i;
+        print_r($i);
+        for($j = $i+1;$j<$len;$j++){ //每次找到最小的min
+            if($arr[$j] < $arr[$min]){
+                $min = $j;
+            }
+        }
 
-    for ($i = 0; $i < $max; $i++) {
+        if($min != $i){
+            $tmp = $arr[$min];
+            $arr[$min] = $arr[$i];
+            $arr[$i] = $tmp;
+        }
+        print_r("第".($i+1)."次排序后结果".join(',',$arr).'<br>');
 
     }
+    return $arr;
+
 }
+
+$res=  select_sort($arr);
+echo join(',',$res);

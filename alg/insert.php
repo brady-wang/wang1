@@ -1,5 +1,5 @@
 <?php
-$arr = [7,6,5,4,3,2,1];
+$arr = [4,3,2,1];
 
 function insertSort($arr){
     //获取需要排序的长度
@@ -17,7 +17,7 @@ function insertSort($arr){
                 print_r($tmp."比 下标".$j." " .$arr[$j]."小");
 
                 $arr[$j+1] = $arr[$j];
-                $arr[$j] = $tmp;
+                $arr[$j] = $tmp; //交换后arr[j]就是要比较的那个值，所以下次前面的值和他比较后，前面的后移，后面那个位置永远就是那个要比较的值，不会占用其他值得位置，
 
                 print_r("交换后".join(',',$arr)."<br>");
             }else{
